@@ -1,0 +1,20 @@
+/*SELETOR*/
+
+img {
+    /*Aqui vai as propriedades do CSS*/
+    border: 3px solid purple;
+    /* animation: quebrada 15s infinite; */
+    
+}
+
+img.char {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+}
+
+/* @keyframes quebrada {
+    0% {margin-left: 0px;}
+    100% {margin-left: 400px;}
+  } */
