@@ -10,9 +10,13 @@ div.char {
     position: absolute;
     top: 0px;
     left: 0px;
-
+    animation: pulse 2s infinite;
 }
-
+@keyframes pulse {
+    0% {opacity: 1;}
+    50% {opacity: 0.2;}
+    100% {opacity: 1;}
+}
 /* @keyframes quebrada {
     0% {margin-left: 0px;}
     100% {margin-left: 400px;}
