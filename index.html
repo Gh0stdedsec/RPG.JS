@@ -3,28 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./assets/css/CSS_RESET.css">
+    <link rel="stylesheet" href="./assets/css/main.css">
     <title>RPG JS</title>
 </head>
 <body>
-    <table border="1"
-    >
-        <tr>
-            <td>
-                <label for="">Jogador</label>
-            </td>
-            <td>
-                <input type="" placeholder="->Digite seu nome<-" style="width: 250px; border: 0;">
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="">personagem</label>
-            </td>
-            <td>
-                <input type="" placeholder="->Digite o nome do personagem<-" style="width: 250px; border: 0;">
+    
+    <img src="/assets/images/91jlRVcT2hL._SL1500_.jpg" alt="">
+    <img class="char" draggable="true" src="./assets/images/char_deamonwarrior_token.png" alt="">
+    <script>
+        // Aqui temos a linguagem de programacão
+        var char1 = document.querySelector('.char');
+        char1.style.top = "90px";
+        char1.style.left = "30px";
+        document.addEventListener("mousemove", moveChar);
 
-            </td>
-        </tr>
-    </table>
+        // Estamos DECLARANDO uma funcão
+        function moveChar(evento){
+            console.log(evento.clientX)
+            char1.style.left = evento.clientX + "px";
+            char1.style.top = evento.clientY + "px";
+        }
+        console.log(char1);
+    </script>
 </body>
 </html>
