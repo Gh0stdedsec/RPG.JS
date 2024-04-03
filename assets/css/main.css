@@ -2,12 +2,11 @@
 
 img {
     /*Aqui vai as propriedades do CSS*/
-    border: 3px solid purple;
     /* animation: quebrada 15s infinite; */
     
 }
 
-img.char {
+div.char {
     position: absolute;
     top: 0px;
     left: 0px;
