@@ -20,7 +20,7 @@ document.addEventListener("mousemove", function (evento) {
         var rotationEndX = evento.clientX;
         var rotationDelta = rotationEndX - rotationStartX;
         charRotate += rotationDelta / 5;
-        let styleScale = "scale(" + charScale + ") scaleX(" + charMirror + ") rotate(" + charRotate + "deg)";
+        let styleScale = "scale(" + charScale + ") scaleX(" + charMirror + ") rotate(" + (charRotate * -1) + "deg)";
         char1.style.transform = styleScale;
         rotationStartX = rotationEndX;
     }
@@ -29,7 +29,6 @@ document.addEventListener("mousemove", function (evento) {
 // Estamos DECLARANDO uma funcão
 
 char1.addEventListener("mousedown", function (e) {
-    console.log(e)
     e.preventDefault();
 
     if (e.button == 0) { //botao esquerdo do mouse
@@ -43,7 +42,6 @@ char1.addEventListener("mousedown", function (e) {
     } else if (e.button == 2) { //botao direito do mouse
         e.stopPropagation();
         rotatingChar = true;
-        console.log("Direito");
     }
 })
 
@@ -56,23 +54,23 @@ document.addEventListener("mouseup", function () {
 })
 
 char1.addEventListener("wheel", function (evento) {
-    evento.preventDefault();
-    if (evento.deltaY > 0) {
-        if (charScale < 2) {
-            charScale += 0.1
+    if(evento.shiftKey){
+        evento.preventDefault();
+        if (evento.deltaY > 0) {
+            if (charScale < 2) {
+                charScale += 0.1
+            }
+        } else {
+            if (charScale > 0.5) {
+                charScale -= 0.1
+            }
         }
-    } else {
-        if (charScale > 0.5) {
-            charScale -= 0.1
-        }
+        let styleScale = "scale(" + charScale + ") scaleX(" + charMirror + ") rotate(" + charRotate + "deg)";
+        char1.style.transform = styleScale;
     }
-    let styleScale = "scale(" + charScale + ") scaleX(" + charMirror + ") rotate(" + charRotate + "deg)";
 
-    char1.style.transform = styleScale;
-
-    console.log("rolando");
 }) 
-char1.addEventListener("contextmenu", function (evt) {
+document.addEventListener("contextmenu", function (evt) {
     evt.preventDefault();
 })
 
