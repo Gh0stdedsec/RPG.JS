@@ -6,6 +6,7 @@ var char1X = 0;
 var char1Y = 0;
 var charOrientation = 0;
 var charScale = 1;
+var charMirror = 1;
 char1.style.top = "90px";
 char1.style.left = "30px";
 document.addEventListener("mousemove", function (evento){
@@ -23,18 +24,14 @@ char1.addEventListener("mousedown", function (e){
     e.preventDefault();
 
     var scale = getComputedStyle(char1).transform;
-    if(e.button == 0){
-char1X = e.offsetX;
-char1Y = e.offsetY;
-movingchar = true;
-
-    }else if(e.button == 1){
-console.log(getComputedStyle(char1).transform);
-if(scale == 'matrix(-1, 0, 0, 1, 0, 0)'){
-    char1.style.transform = "matrix(1, 0, 0, 1, 0, 0)"
-}else{
-    char1.style.transform = "matrix(-1, 0, 0, 1, 0, 0)"
-}
+    if(e.button == 0){ //botao esquerdo do mouse
+        char1X = e.clientX - char1.getBoundingClientRect().left;
+        char1Y = e.clientY - char1.getBoundingClientRect().top;
+        movingchar = true;
+    }else if(e.button == 1){ //botao do meio do mouse (scroll)
+        charMirror *= -1
+        let styleScale = "scale(" + charScale + ") scaleX(" + charMirror + ")";
+        char1.style.transform = styleScale;
     }
 })
 
@@ -48,11 +45,15 @@ document.addEventListener("mouseup", function (){
 char1.addEventListener("wheel", function (evento){
     evento.preventDefault();
     if (evento.deltaY > 0){
-        charScale += 0.1
+        if (charScale < 2){
+            charScale += 0.1
+        }
     }else{
-        charScale -= 0.1
+        if (charScale > 0.5){
+            charScale -= 0.1
+        }
     }
-    let styleScale = "scale(" + charScale + ")";
+    let styleScale = "scale(" + charScale + ") scaleX(" + charMirror + ")";
 
     char1.style.transform = styleScale;
 
